@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import web3 from "web3";
 import { Multicall } from "ethereum-multicall";
 import BigNumber from "bignumber.js";
-import { callFuncDefine, contractCallContext } from "./helper/getData";
+import { callFuncDefine, contractCallContext } from "./constants";
 import { injected, walletConnect } from "./constants";
 import styled from "styled-components";
 import Modal from "./component/modal";
@@ -74,33 +74,49 @@ function App() {
   };
 
   const stake = async (amount) => {
-    await connectContract(MASTERCHEF_ABI, MASTERCHEF_ADDRESS)
-      ?.methods.deposit(Web3.utils.toWei(amount.toString()))
-      .send({ from: account });
+    try {
+      await connectContract(MASTERCHEF_ABI, MASTERCHEF_ADDRESS)
+        ?.methods.deposit(Web3.utils.toWei(amount.toString()))
+        .send({ from: account });
+      console.log("STAKE SUCCESS");
+    } catch (e) {
+      console.log(e, "error");
+    }
     setIsOpenStakeModal(false);
-    console.log("STAKE SUCCESS");
   };
 
   const unStake = async (amount) => {
-    await connectContract(MASTERCHEF_ABI, MASTERCHEF_ADDRESS)
-      ?.methods.withdraw(Web3.utils.toWei(amount.toString()))
-      .send({ from: account });
+    try {
+      await connectContract(MASTERCHEF_ABI, MASTERCHEF_ADDRESS)
+        ?.methods.withdraw(Web3.utils.toWei(amount.toString()))
+        .send({ from: account });
+      console.log("UNSTAKE SUCCESS");
+    } catch (e) {
+      console.log(e, "error");
+    }
     setIsOpenUnstakeModal(false);
-    console.log("UNSTAKE SUCCESS");
   };
 
   const harvest = async () => {
-    await connectContract(MASTERCHEF_ABI, MASTERCHEF_ADDRESS)
-      ?.methods.deposit("0")
-      .send({ from: account });
-    console.log("HARVEST SUCCESS");
+    try {
+      await connectContract(MASTERCHEF_ABI, MASTERCHEF_ADDRESS)
+        ?.methods.deposit("0")
+        .send({ from: account });
+      console.log("HARVEST SUCCESS");
+    } catch (e) {
+      console.log(e, "error");
+    }
   };
 
   const approve = async () => {
-    await connectContract(WETH_ABI, WETH_ADDRESS)
-      ?.methods.approve(MASTERCHEF_ADDRESS, Web3.utils.toWei('10'))
-      .send({ from: account });
-    console.log("APPROVE SUCCESS");
+    try {
+      await connectContract(WETH_ABI, WETH_ADDRESS)
+        ?.methods.approve(MASTERCHEF_ADDRESS, Web3.utils.toWei("10"))
+        .send({ from: account });
+      console.log("APPROVE SUCCESS");
+    } catch (e) {
+      console.log(e, "error");
+    }
   };
 
   if (Web3) {
