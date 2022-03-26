@@ -1,7 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const Modal = ({ open, title, onAction, balance, onClose }) => {
+const Modal = ({
+  open,
+  title,
+  onAction,
+  balance,
+  onClose,
+  isStake = false,
+}) => {
   const [amount, setAmount] = useState("");
   return (
     <>
@@ -20,7 +27,11 @@ const Modal = ({ open, title, onAction, balance, onClose }) => {
               }}
             />
 
-            <SBalance>Your WETH balances: {balance} WETH</SBalance>
+            {isStake ? (
+              <SBalance>Your WETH balances: {balance} WETH</SBalance>
+            ) : (
+              <SBalance>Your WETH deposited: {balance} WETH</SBalance>
+            )}
 
             <SButton
               onClick={() => {

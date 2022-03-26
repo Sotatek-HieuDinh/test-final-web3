@@ -245,7 +245,7 @@ function App() {
         }}
         open={isOpenUnstakeModal}
         title={"Withdraw"}
-        balance={allowance}
+        balance={balanceStaked}
         onAction={unStake}
       />
     </div>
