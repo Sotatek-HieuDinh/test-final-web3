@@ -159,7 +159,7 @@ function App() {
           <h1>Balance: {balanceWETH} WETH</h1>
           <h1>Token earned: {balanceDD2} DD2</h1>
           <h1>Your stake: {reward} WETH</h1>
-          <h1>Amout staked: {balanceStaked} WETH</h1>
+          <h1>Amount staked: {balanceStaked} WETH</h1>
           <h1>Allowance: {allowance} WETH</h1>
           <h1>Total stake: {balanceTotalStaked} WETH</h1>
           <button onClick={harvest}>HARVEST</button>
