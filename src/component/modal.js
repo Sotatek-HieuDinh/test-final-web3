@@ -7,7 +7,6 @@ const Modal = ({
   onAction,
   balance,
   onClose,
-  isStake = false,
 }) => {
   const [amount, setAmount] = useState("");
   return (
@@ -27,7 +26,7 @@ const Modal = ({
               }}
             />
 
-            {isStake ? (
+            {title==='Stake' ? (
               <SBalance>Your WETH balances: {balance} WETH</SBalance>
             ) : (
               <SBalance>Your WETH deposited: {balance} WETH</SBalance>
